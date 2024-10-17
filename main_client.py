@@ -1,13 +1,14 @@
 import time
-
+from TransportProtocol import TransmitterTx
 from CLI import RichCLI
 from Client import clientConnect
 
 if __name__ == '__main__':
     cli = RichCLI.Styler()
-    client = clientConnect.TCPClient(8080)
+    CLIENT_HOST = cli.console.input("Enter the host name to connect:\n")
+    client = clientConnect.TCPClient(HOST=CLIENT_HOST, PORT=8080)
     client.showConnInfo()
     with open("Aria Math.wav", "rb") as f:
         data = f.read()
     client.Connect()
-    client.Tx_Protocol(data=data, instruction="Senddd", conn=client.soc, cli=cli)
+    TransmitterTx.Tx(data=data, instruction="Send", conn=client.soc, cli=cli).Tx_Protocol()
