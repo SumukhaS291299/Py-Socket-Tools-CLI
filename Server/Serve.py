@@ -45,8 +45,10 @@ class TCPServe:
         Anim.Animation(["🎶", "🎼", "🎼", "🎵", "🎶", "🎙", "🎚", "🎛", "🎧", "📻", "🎷", "🎸", "🎹", "🎺", "🪈", "🪇", "🥁", "🪕", "🎻"],
                        sleep=0.5, end="\r")
         cli.Show(Text(f"Waiting for instruction from {addr}"))
-        BufferData, Scheduler = ReceiverRx.Rx(conn, cli).Rx_Protocol()
-        self.PLayAudio(data=BufferData, schedule=Scheduler)
+        # BufferData, Scheduler = ReceiverRx.Rx(conn, cli).rx_protocol_file_trasfer()
+        # self.PLayAudio(data=BufferData, schedule=Scheduler)
+        ReceiverRx.Rx(conn,cli).rx_protcol_chat()
+
 
     def ListenConnections(self):
         self.soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
